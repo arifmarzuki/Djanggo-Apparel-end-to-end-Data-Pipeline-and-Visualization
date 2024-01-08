@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dm_performance_product_by_cities
+    description: This table has information about a performance product in every cities
+    columns:
+      - name: product_name
+        tests:
+          - not_null
+      - name: city_name 
+        tests:
+          - not_null
+      - name: product_count
+        tests:
+          - not_null
+
+  - name: dm_revenue_by_months
+    description: This table has information about revenue in every month
+    columns:
+      - name: month
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null

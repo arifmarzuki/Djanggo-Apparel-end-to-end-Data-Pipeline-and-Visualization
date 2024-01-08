@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: fct_transaction
+    description: This table has basic information about fact order
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: order_date
+        tests:
+          - not_null
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: province_id
+        tests:
+          - unique
+          - not_null
+      - name: city_id
+        tests:
+          - unique
+          - not_null
+      - name: order_detail_id
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: qty
+        tests:
+          - not_null
+      - name: item_price
+        tests:
+          - not_null
+      - name: unit_sales
+        tests:
+          - not_null

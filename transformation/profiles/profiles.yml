@@ -1,0 +1,45 @@
+default: dbt_project
+dim_layer:
+  outputs:
+    dim_layer:
+      dbname: data_warehouse
+      host: host.docker.internal
+      pass: warehouse_password
+      port: 5433
+      schema: dimension
+      type: postgres
+      user: warehouse_user
+  target: dim_layer
+fct_layer:
+  outputs:
+    fct_layer:
+      dbname: data_warehouse
+      host: host.docker.internal
+      pass: warehouse_password
+      port: 5433
+      schema: fact
+      type: postgres
+      user: warehouse_user
+  target: fct_layer
+dm_layer:
+  outputs:
+    dm_layer:
+      dbname: data_warehouse
+      host: host.docker.internal
+      pass: warehouse_password
+      port: 5433
+      schema: datamart
+      type: postgres
+      user: warehouse_user
+  target: dm_layer
+transformation:
+  outputs:
+    dev:
+      dbname: data_warehouse
+      host: host.docker.internal
+      pass: warehouse_password
+      port: 5433
+      schema: dbt
+      type: postgres
+      user: warehouse_user
+  target: dev
