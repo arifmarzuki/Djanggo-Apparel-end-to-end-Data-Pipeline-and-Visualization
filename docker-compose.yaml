@@ -59,7 +59,7 @@ services:
       interval: 10s
       retries: 5
       start_period: 5s
-    restart: always
+    restart: on-failure
     networks:
       - airflow_network
 
@@ -79,7 +79,7 @@ services:
       interval: 10s
       retries: 5
       start_period: 5s
-    restart: always
+    restart: on-failure
     networks:
       - airflow_network
 
@@ -94,7 +94,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
-    restart: always
+    restart: on-failure
     depends_on:
       <<: *airflow-common-depends-on
       airflow-init:
@@ -111,7 +111,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
-    restart: always
+    restart: on-failure
     depends_on:
       <<: *airflow-common-depends-on
       airflow-init:
@@ -226,7 +226,18 @@ services:
     image: dbt_in_docker_compose
     networks:
       - airflow_network
+  
+  metabase:
+    container_name: metabase
+    depends_on:
+      - data_warehouse_postgres
+    image: metabase/metabase # Dockerfile we created for metabase
+    ports:
+      - 3000:3000
+    networks:
+      - airflow_network
 
 volumes:
   postgres-db-volume:
   data-warehouse-db-volume:
+  metabase-db-volume:
