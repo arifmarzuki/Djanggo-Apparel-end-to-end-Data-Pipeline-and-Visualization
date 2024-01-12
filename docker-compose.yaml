@@ -22,13 +22,13 @@ x-airflow-common:
     _PIP_ADDITIONAL_REQUIREMENTS: 'xlrd openpyxl'
 
     # SMTP config
-    AIRFLOW__SMTP__SMTP_HOST: 'm.charischakim.gmail.com'
-    AIRFLOW__SMTP__SMTP_STARTTLS: True
-    AIRFLOW__SMTP__SMTP_SSL: False
-    AIRFLOW__SMTP__SMTP_USER: 'smtp_user'
-    AIRFLOW__SMTP__SMTP_PASSWORD: 'smtp_password'
-    AIRFLOW__SMTP__SMTP_PORT: 587
-    AIRFLOW__SMTP__SMTP_MAIL_FROM: 'no-reply@gmail.com'
+    # AIRFLOW__SMTP__SMTP_HOST: 'm.charischakim.gmail.com'
+    # AIRFLOW__SMTP__SMTP_STARTTLS: True
+    # AIRFLOW__SMTP__SMTP_SSL: False
+    # AIRFLOW__SMTP__SMTP_USER: 'smtp_user'
+    # AIRFLOW__SMTP__SMTP_PASSWORD: 'smtp_password'
+    # AIRFLOW__SMTP__SMTP_PORT: 587
+    # AIRFLOW__SMTP__SMTP_MAIL_FROM: 'no-reply@gmail.com'
     # AIRFLOW_UID: 50000
 
   volumes:
@@ -36,6 +36,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
+    - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/dataset
     - ${AIRFLOW_PROJ_DIR:-.}/config/airflow.cfg:/usr/local/airflow/airflow.cfg
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
