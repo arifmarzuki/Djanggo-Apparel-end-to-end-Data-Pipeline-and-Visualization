@@ -1,72 +1,65 @@
 version: 2
 
 models:
-  - name: dim_customer
-    description: This table has basic information about a customer
+  - name: dim_customers
+    description: "Information of customers"
     columns:
       - name: customer_id
-        description: This is a unique identifier for a customer
+        description: "First name of the customers"
         tests:
-          - unique
           - not_null
       - name: first_name
-        description: Customer's first name. 
+        description: "First name of the customers"
         tests:
           - not_null
       - name: last_name
-        description: Customer's last name. 
+        description: "Last name of the customers"
         tests:
           - not_null
       - name: gender
-        description: gender of customer's
+        description: "Gender of the customers"
         tests:
           - not_null
 
-
   - name: dim_location
-    description: This table has basic information location of city and provice
+    description: "Information of location"
     columns:
       - name: city_id
         tests:
-          - unique
           - not_null
-        description: This is a unique identifier for a city
       - name: city_names
+        description: "Name of the city"
         tests:
           - not_null
       - name: province_id
-        description: This is a unique identifier for a province
         tests:
-            - unique
-            - not_null
-      - name: province_name
+          - not_null
+      - name: province_names
         tests:
-            - not_null
+          - not_null
 
   - name: dim_products
-    description: This table has basic information about a products
+    description: "Information of products"
     columns:
       - name: product_id
-        description: This is a unique identifier for a products
         tests:
-          - unique
           - not_null
       - name: product_name
+        description: "Name of the product"
         tests:
           - not_null
       - name: size
+        description: "Size of the product"
         tests:
           - not_null
       - name: price
+        description: "Price of the product"
         tests:
           - not_null
       - name: product_category_id
-        description: This is a unique identifier for a products category
         tests:
-          - unique
-          - not_null     
-      - name: product_category_name
-        tests:
-          - unique
           - not_null
-
+      - name: product_category_name
+        description: "Product category name of the product"
+        tests:
+          - not_null

@@ -7,7 +7,6 @@ import pandas as pd
 
 
 def load_data_to_postgres():
- 
     path = '/opt/airflow/dags/provinces.xlsx'
     df = pd.read_excel(path)
 

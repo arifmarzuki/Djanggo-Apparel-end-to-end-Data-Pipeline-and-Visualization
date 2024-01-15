@@ -1,6 +1,11 @@
 select
-    c.*,
-    p.province_names
+    c.city_id
+    , c.city_names
+    , p.province_id
+    , p.province_names
 from
-    cities c
-left join provinces p on c.province_id=p.province_id
+    provinces p
+left join
+    cities as c
+    on
+        c.province_id = p.province_id

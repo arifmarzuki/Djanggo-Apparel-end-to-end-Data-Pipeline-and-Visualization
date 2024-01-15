@@ -16,12 +16,12 @@ with DAG(
 
     start = DummyOperator(task_id="start")
 
-    local_path = "/d/code-repository/capstone-project/transformation" #folder yang ada modelnya
+    local_path = "/d/code-repository/ETL-demo/transformation" #folder yang ada modelnya
     
     dbt_debug_cmd = DockerOperator(
         task_id='dbt_debug_cmd',
         image='dbt_in_docker_compose',
-        container_name='dbt_cont',
+        container_name='dbt_container',
         api_version='auto',
         auto_remove=True,
         command="bash -c 'dbt debug'",

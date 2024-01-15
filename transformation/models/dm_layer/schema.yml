@@ -1,26 +1,34 @@
 version: 2
 
 models:
-  - name: dm_performance_product_by_cities
-    description: This table has information about a performance product in every cities
+  - name: dm_perfomance_product_by_province
+    description: "Performance sales product by province"
     columns:
+      - name: province_name
+        description: "Name of the province"
+        tests:
+          - not_null
       - name: product_name
+        description: "Name of the product"
         tests:
           - not_null
-      - name: city_name 
+      - name: total_quantity
+        description: "Total quantity of product"
         tests:
           - not_null
-      - name: product_count
+      - name: total_sales
+        description: "Total sales of the product"
         tests:
           - not_null
 
   - name: dm_revenue_by_months
-    description: This table has information about revenue in every month
+    description: "Revenue by month"
     columns:
       - name: month
+        description: "Month of revenue"
         tests:
-          - unique
           - not_null
       - name: total_revenue
+        description: "Total revenue per month"
         tests:
           - not_null

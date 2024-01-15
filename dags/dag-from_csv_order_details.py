@@ -42,15 +42,15 @@ with DAG(
         """
         pg_hook.run(create_table_in_db_task)
         
-        for index, row in data.iterrows():
+        for _, row in data.iterrows():
             insert_query = """
                     INSERT INTO order_details
                     (order_detail_id, order_id, product_id, qty, item_price, unit_sales)
                     VALUES (%s, %s, %s, %s, %s, %s)
                     """
             values = (row['order_detail_id'], row['order_id'], row['product_id'], row['qty'], row['item_price'], row['unit_sales'])
-            pg_hook.run(insert_query, autocommit=True, parameters=values)
-              
+            pg_hook.run(insert_query, autocommit=True, parameters=values)      
+#       
     load_data = PythonOperator(
         task_id='load_data',
         python_callable=load_data_to_postgres

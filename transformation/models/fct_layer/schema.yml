@@ -1,42 +1,54 @@
 version: 2
 
 models:
-  - name: fct_transaction
-    description: This table has basic information about fact order
+  - name: fct_transactions
+    description: "Information of transaction"
     columns:
-      - name: order_id
-        tests:
-          - unique
-          - not_null
-      - name: order_date
-        tests:
-          - not_null
-      - name: customer_id
-        tests:
-          - unique
-          - not_null
-      - name: province_id
-        tests:
-          - unique
-          - not_null
-      - name: city_id
-        tests:
-          - unique
-          - not_null
-      - name: order_detail_id
-        tests:
-          - unique
-          - not_null
-      - name: product_id
-        tests:
-          - unique
-          - not_null
       - name: qty
+        description: "Quantity of the product"
         tests:
           - not_null
       - name: item_price
+        description: "the result of multiplying price and product quantity"
         tests:
           - not_null
       - name: unit_sales
+        description: "Unit_sales of the product"
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date of product purchase"
+        tests:
+          - not_null
+      - name: name
+        description: "Name of the customer"
+        tests:
+          - not_null
+      - name: gender
+        description: "Gender of the customer"
+        tests:
+          - not_null
+      - name: city_names
+        description: "City name of the location"
+        tests:
+          - not_null
+      - name: province_names
+        description: "Province name of the location"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Name of the product"
+        tests:
+          - not_null
+      - name: size
+        description: "Size of the product"
+        tests:
+          - not_null
+      - name: price
+        description: "Price of the product"
+        tests:
+          - not_null
+      - name: product_category_name
+        description: "Category name of the product"
         tests:
           - not_null

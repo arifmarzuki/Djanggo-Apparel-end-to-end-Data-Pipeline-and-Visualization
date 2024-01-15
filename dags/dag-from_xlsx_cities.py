@@ -7,8 +7,7 @@ import pandas as pd
 
 
 def load_data_to_postgres():
- 
-    path = '/opt/airflow/dags/cities.xlsx'
+    path = '/opt/airflow/dataset/cities.xlsx'
     df = pd.read_excel(path)
 
     pg_hook = PostgresHook(postgres_conn_id='pg_conn')
