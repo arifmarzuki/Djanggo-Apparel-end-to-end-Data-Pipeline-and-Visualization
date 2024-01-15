@@ -5,28 +5,27 @@ from airflow.hooks.postgres_hook import PostgresHook
 from airflow.operators.dummy_operator import DummyOperator
 import pandas as pd
 
+def read_data():
+    path = '/opt/airflow/dataset/cities.xlsx'
+    data = pd.read_excel(path)
+    return data
 
 def load_data_to_postgres():
-    path = '/opt/airflow/dataset/cities.xlsx'
-    df = pd.read_excel(path)
-
     pg_hook = PostgresHook(postgres_conn_id='pg_conn')
-
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS cities (
-        city_id SERIAL PRIMARY KEY,
-        city_names VARCHAR(255),
-        province_id INT
-    );
+        city_id INT PRIMARY KEY,
+        city_names TEXT,
+        province_id INT REFERENCES provinces(province_id)
+    )
     '''
-
     pg_hook.run(create_table_query)
 
-    for index, row in df.iterrows():
-        insert_query = "INSERT INTO cities (city_names, province_id) VALUES (%s, %s)"
-        values = (row['city_names'], row['province_id'])
+    for _, row in read_data().iterrows():
+        insert_query = "INSERT INTO cities (city_id, city_names, province_id) VALUES (%s, %s, %s)"
+        values = int(row['city_id']),row['city_names'], int(row['province_id'])
         pg_hook.run(insert_query, autocommit=True, parameters=values)
-    
+        
     pg_hook.get_conn().commit()
     pg_hook.get_conn().close()
 
@@ -36,10 +35,16 @@ default_args = {
 }
 
 dag = DAG(
-    'ingest_cities',
+    '5-ingest_cities',
     default_args=default_args,
     schedule_interval=None,
     description='A DAG to read xlsx file name cities and ingest into PostgreSQL',
+)
+
+read_dataset = PythonOperator(
+    task_id='read_data',
+    python_callable=read_data,
+    dag=dag,
 )
 
 load_data = PythonOperator(
@@ -50,5 +55,4 @@ load_data = PythonOperator(
 start = DummyOperator(task_id='start', dag=dag)
 end = DummyOperator(task_id='end', dag=dag)
 
-
-start >> load_data >> end
+start >> read_dataset >> load_data >> end

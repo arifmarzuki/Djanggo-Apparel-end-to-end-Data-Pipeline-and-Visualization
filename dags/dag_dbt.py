@@ -18,8 +18,8 @@ with DAG(
 
     local_path = "/d/code-repository/ETL-demo/transformation" #folder yang ada modelnya
     
-    dbt_debug_cmd = DockerOperator(
-        task_id='dbt_debug_cmd',
+    dbt_debug = DockerOperator(
+        task_id='dbt_debug',
         image='dbt_in_docker_compose',
         container_name='dbt_container',
         api_version='auto',
@@ -42,8 +42,8 @@ with DAG(
         mount_tmp_dir = False
     )
 
-    dbt_run_cmd = DockerOperator(
-        task_id='dbt_run_cmd',
+    dbt_run = DockerOperator(
+        task_id='dbt_run_and_test',
         image='dbt_in_docker_compose',
         container_name='dbt_container',
         api_version='auto',
@@ -68,4 +68,4 @@ with DAG(
 
     end = DummyOperator(task_id="end")
 
-    start >> dbt_debug_cmd >> dbt_run_cmd >> end 
+    start >> dbt_debug >> dbt_run >> end 

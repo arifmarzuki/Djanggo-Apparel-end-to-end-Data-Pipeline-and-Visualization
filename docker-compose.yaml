@@ -37,7 +37,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ${AIRFLOW_PROJ_DIR:-.}/dataset:/opt/airflow/dataset
-    - ${AIRFLOW_PROJ_DIR:-.}/config/airflow.cfg:/usr/local/airflow/airflow.cfg
+    - ${AIRFLOW_PROJ_DIR:-.}/config/airflow.cfg:/usr/local/airflow/dataset
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -233,6 +233,8 @@ services:
     depends_on:
       - data_warehouse_postgres
     image: metabase/metabase # Dockerfile we created for metabase
+    volume:
+      - metabase-db-volume:/var/lib/metabase/data
     ports:
       - 3000:3000
     networks:
