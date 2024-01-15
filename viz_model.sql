@@ -3,10 +3,10 @@ SELECT
     product_id,
     product_name,
     product_category_name,
-    SUM(od.qty) AS Total_qty_Sold,
-    SUM(od.unit_sales) AS Total_Sales
+    SUM(qty) AS Total_qty_Sold,
+    SUM(unit_sales) AS Total_Sales
 FROM
-    fct_transactions
+    dbt_fact.fct_transactions
 GROUP BY
     product_id, product_name, product_category_name
 ORDER BY Total_Sales DESC
@@ -15,23 +15,23 @@ LIMIT 5;
 -- Data penjualan berdasarkan provinsi
 SELECT
     province_id,
-    province_name,
-    SUM(od.qty) AS Total_qty_Sold,
-    SUM(od.unit_sales) AS Total_Sales
+    province_names,
+    SUM(qty) AS Total_qty_Sold,
+    SUM(unit_sales) AS Total_Sales
 FROM
-    fct_transactions
+    dbt_fact.fct_transactions
 GROUP BY
-    province_id, province_name
+    province_id, province_names
 ORDER BY Total_Sales DESC
 LIMIT 5;
 
 -- Data penjualan berdasarkan waktu (bulan)
 SELECT
-    DATE_TRUNC('month', o.order_date) AS Month,
-    SUM(od.qty) AS Total_qty_Sold,
-    SUM(od.unit_sales) AS Total_Sales
+    DATE_TRUNC('month',order_date) AS Month,
+    SUM(qty) AS Total_qty_Sold,
+    SUM(unit_sales) AS Total_Sales
 FROM
-    fct_transactions
+    dbt_fact.fct_transactions
 GROUP BY
     Month
 ORDER BY
@@ -44,14 +44,14 @@ ORDER BY
 SELECT
     customer_id,
     name,
-    COUNT(o.order_id) AS Total_Orders,
-    SUM(od.unit_sales) AS Total_Sales
+    COUNT(order_id) AS Total_Orders,
+    SUM(unit_sales) AS Total_Sales
 FROM
-    fct_transactions
+    dbt_fact.fct_transactions
 GROUP BY
     customer_id, name
 ORDER BY Total_Sales DESC
-LIMIT 10;
+LIMIT 5;
 
 -- Analisis Kategori Produk:
 -- Total penjualan per kategori produk.
@@ -59,21 +59,21 @@ LIMIT 10;
 SELECT
     product_category_id,
     product_category_name,
-    SUM(od.unit_sales) AS Total_Sales,
-    COUNT(DISTINCT p.product_id) AS Total_Products_Sold
+    SUM(unit_sales) AS Total_Sales,
+    COUNT(DISTINCT product_id) AS Total_Products_Sold
 FROM
-    fct_transactions
+    dbt_fact.fct_transactions
 GROUP BY
     product_category_id, product_category_name;
 
 -- Analisis Waktu:
 -- Jumlah pesanan dan penjualan bulanan
 SELECT
-    DATE_TRUNC('month', o.order_date) AS Month,
-    COUNT(o.order_id) AS Total_Orders,
-    SUM(od.unit_sales) AS Total_Sales
+    DATE_TRUNC('month', order_date) AS Month,
+    COUNT(order_id) AS Total_Orders,
+    SUM(unit_sales) AS Total_Sales
 FROM
-    fct_transactions
+    dbt_fact.fct_transactions
 GROUP BY
     Month
 ORDER BY
