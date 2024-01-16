@@ -9,9 +9,8 @@
 
 ### Requirements
 
-- Melakukan pengambilan data, include orchestration, transformation. i.e., ETL 
-- Melakukan pengambilan data agregasi dari db + excel 
-- Mengambil data secara real time 
+- Melakukan pengambilan data, include orchestration, transformation. i.e., ELT 
+- Melakukan pengambilan data agregasi dari db + excel  
 - Membuat visualisasi
 
 ### Project Description and Expected Delivereble
@@ -36,7 +35,7 @@ Oleh karena itu, fokus utama Django Apparel saat ini adalah memaksimalkan strate
     - Fact layer
         - fct_transactions
     - Datamart layer
-        - dm_perfomance_product_by_cities
+        - dm_perfomance_product_by_provinces
         - dm_revenue_by_months
 
 #### Success Criteria
