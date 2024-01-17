@@ -1,11 +1,11 @@
-from airflow import DAG
-from airflow.utils.dates import days_ago
-from airflow.operators.python_operator import PythonOperator
 from airflow.hooks.postgres_hook import PostgresHook
-from airflow.operators.dummy_operator import DummyOperator
 import pandas as pd
 
-def read_csv_file():
+def main():
+    read_data()
+    load_data_to_postgres()
+
+def read_data():
     file_path = '/opt/airflow/dataset/order_details.csv'
     df = pd.read_csv(file_path)
     return df
@@ -26,7 +26,7 @@ def load_data_to_postgres():
     '''
     pg_hook.run(create_table_query)
 
-    data = read_csv_file()
+    data = read_data()
 
     # Specify the columns to be used as the primary key
     index_columns = ['order_detail_id']
@@ -37,33 +37,3 @@ def load_data_to_postgres():
     #close connection
     pg_hook.get_conn().commit()
     pg_hook.get_conn().close()
-
-default_args = {
-    'owner': 'airflow',
-    'start_date': days_ago(1)
-}
-
-dag = DAG(
-    '7-ingest_order_details',
-    default_args=default_args,
-    schedule_interval=None,
-    description='A DAG to read CSV file name order_details and ingest into PostgreSQL',
-)
-
-read_csv = PythonOperator(
-    task_id='read_csv',
-    python_callable=read_csv_file,
-    provide_context=True,
-    dag=dag,
-)
-
-load_data = PythonOperator(
-    task_id='load_data',
-    python_callable=load_data_to_postgres,
-    provide_context=True,
-    dag=dag,
-)
-start = DummyOperator(task_id='start', dag=dag)
-end = DummyOperator(task_id='end', dag=dag)
-
-start >> read_csv >> load_data >> end
