@@ -1,49 +1,71 @@
-# Project Brief Data Engineering
 
-## 💻 Technical Brief
+# Django Apparel's Data Pipelines
 
-## Contraints
 
-- Data terpisah berasal dari multiple source seperti db, excel, dan data source yg lain.
-- Constraint setiap problem akan spesifik ditentukan pada bagian project description.
+## About The Project
+This project aims to maximize Django Apparel's marketing and sales strategies by utilizing the data that has been collected. The hope is that along with a focused and efficient strategy design, the Django Apparel platform will be able to increase revenue significantly.
 
-### Requirements
 
-- Melakukan pengambilan data, include orchestration, transformation. i.e., ELT 
-- Melakukan pengambilan data agregasi dari db + excel  
-- Membuat visualisasi
+## 🖥️ Tools and Tech
 
-### Project Description and Expected Delivereble
+<img alt="Python" src="https://img.shields.io/badge/Python-14354C.svg?logo=python&logoColor=white"></a>
+<img alt="Dbeaver" src="https://custom-icon-badges.demolab.com/badge/-Dbeaver-372923?logo=dbeaver-mono&logoColor=white"></a>
+<img alt="PostgreSQL" src ="https://img.shields.io/badge/PostgreSQL-316192.svg?logo=postgresql&logoColor=white"></a>
+<img alt="DBT" src ="https://img.shields.io/badge/dbt-FF694B.svg?logo=dbt&logoColor=white"></a>
+<img alt="Airflow" src ="https://img.shields.io/badge/Airflow-017CEE.svg?logo=Apache-Airflow&logoColor=white">
+<img alt="Github" src ="https://img.shields.io/badge/GitHub-181717.svg?logo=GitHub&logoColor=white">
+<img alt="Docker" src ="https://img.shields.io/badge/Docker-2496ED.svg?logo=Docker&logoColor=white">
+<img alt="Metabase" src ="https://img.shields.io/badge/Metabase-509EE3.svg?logo=Metabase&logoColor=white">
+<img alt ="Discord" src ="https://img.shields.io/badge/Discord-5865F2.svg?logo=Discord&logoColor=white">
 
-#### Background
+## 🚀 ELT Process
 
-Django Apparel adalah sebuah clothing online store yang sedang berkembang, memiliki tujuan untuk meningkatkan penjualan produk dan memperluas pangsa pasar. Fokus utama perusahaan adalah mengoptimalkan strategi pemasaran koleksi pakaian dengan memanfaatkan data preferensi pelanggan dan tren industri fashion sebagai kunci yang penting.
+![App Screenshot](/images/outline.png)
+- Perform data retrieval, include orchestration, transformation. i.e., ELT
+- Retrieving aggregation data from DB + Excel
+- Create visualizations
 
-Melalui platform online, Django Apparel telah mengumpulkan data tentang preferensi pembelian pelanggan, popularitas produk, dan tren industri fashion. Tantangan utama adalah bagaimana memanfaatkan data tersebut secara efektif.
+# 📍 ERD
 
-Oleh karena itu, fokus utama Django Apparel saat ini adalah memaksimalkan strategi pemasaran dan penjualan. Dengan memanfaatkan data yang telah terkumpul, perusahaan berharap dapat merancang strategi yang lebih terarah dan efisien. Hal ini meliputi peningkatan penempatan produk, ekspansi ke pasar yang lebih luas untuk meningkatkan revenue, serta memberikan pengalaman belanja yang baik untuk pelanggan setia di platform Django Apparel.
+![App Screenshot](/images/erd.png)
 
-#### Deliverable
+## 🏃 Run Locally
 
-1. Create DAG's untuk ingest [data ini](/dataset/) ke postgres menggunakan Airflow
-2. Ekspetasi data yang di ingest terbuat sebanyak 7 table
-3. Transform data untuk membuat kimball data modeling dengan requirements sebagai berikut
-    - Dimension layer
-        - dim_products
-        - dim_customers
-        - dim_locations
-    - Fact layer
-        - fct_transactions
-    - Datamart layer
-        - dm_perfomance_product_by_provinces
-        - dm_revenue_by_months
+Clone the project
 
-#### Success Criteria
+```bash
+  git clone https://github.com/CharisChakim/ELT-demo.git
+```
 
-1. Sukses ingest data dari beberapa format file ke database menggunakan airflow.
-2. Berhasil membuat layering data model dengan joinan table yang tepat.
-3. Berhasil menyajikan isi data dalam data modeling sesuai requirements.
+run docker compose
 
-#### Documentation
+```bash
+  docker compose up -d
+```
+You can now access airflow at `localhost:8080`
 
-Link referensi untuk kimball data modelling https://www.youtube.com/watch?v=gRE3E7VUzRU&t=653s
+- User: `airflow`
+- Password: `airflow`
+
+You can now access metabase at `localhost:3000`
+
+you can trigger DAG in airflow UI to do ELT task to get data into your database, And then you can visualizing data with metabase.
+
+# 💻 Visualization Sample
+
+![App Screenshot](/images/visual.png)
+
+
+## 🧔 Author
+- Charis Chakim [![Github Badge](https://img.shields.io/badge/Github-black?logo=github)](https://github.com/CharisChakim)
+
+- Arif Marzuki  [![Github Badge](https://img.shields.io/badge/Github-black?logo=github)](https://github.com/arifmarzuki)
+
+- Qorina Mumtaza  [![Github Badge](https://img.shields.io/badge/Github-black?logo=github)](https://github.com/qorinamumtaza)
+
+
+
+
+
+
+
