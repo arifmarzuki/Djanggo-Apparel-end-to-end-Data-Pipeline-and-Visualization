@@ -8,4 +8,4 @@ FROM
 GROUP BY
     product_name, product_category_name
 ORDER BY Total_Sales DESC
-LIMIT 5;
+LIMIT 5
