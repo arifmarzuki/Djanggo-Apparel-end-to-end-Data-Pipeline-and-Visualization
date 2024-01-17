@@ -32,3 +32,64 @@ models:
         description: "Total revenue per month"
         tests:
           - not_null
+
+  - name: dm_performance_by_gender
+    description: "Performance produk by gender"
+    columns:
+      - name: gender
+        description: "Gender of the customer"
+        tests:
+          - not_null
+      - name: Total_Sales
+        description: "Total Sales per gender"
+        tests:
+          - not_null
+
+  - name: dm_performance_top_high_buyer
+    description: "Top high buyer"
+    columns:
+      - name: name
+        description: "Name of the customer"
+        tests:
+          - not_null
+      - name: Total_Sales
+        description: "Total Sales per name customer"
+        tests:
+          - not_null
+
+  - name: dm_best_seller_product
+    description: "Best seller of the product"
+    columns:
+      - name: product_name
+        description: "Name of the product"
+        tests:
+          - not_null
+      - name: product_category_name
+        description: "Name of product category"
+        tests:
+          - not_null
+      - name: size
+        description: "Size of the product"
+        tests:
+          - not_null
+      - name: Total_qty_Sold
+        description: "Total qty sold of the product"
+        tests:
+          - not_null
+
+  - name: dm_performance_qty_products
+    description: "Performance qty of the product vs previous month"
+    columns:
+      - name: month
+        description: "Month of the year "
+        tests:
+          - not_null
+      - name: Total_qty_Sold
+        description: "Total qty sold of product"
+        tests:
+          - not_null
+      - name: Total_Sales
+        description: "Total sales of the product"
+        tests:
+          - not_null
+

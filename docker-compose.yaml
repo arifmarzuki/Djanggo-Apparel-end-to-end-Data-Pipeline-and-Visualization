@@ -233,7 +233,7 @@ services:
     depends_on:
       - data_warehouse_postgres
     image: metabase/metabase # Dockerfile we created for metabase
-    volume:
+    volumes:
       - metabase-db-volume:/var/lib/metabase/data
     ports:
       - 3000:3000
