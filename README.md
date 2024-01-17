@@ -18,9 +18,9 @@ This project aims to maximize Django Apparel's marketing and sales strategies by
 
 ## 🚀 ELT Process
 ![ELT](https://github.com/qorinamumtaza/assets/blob/main/ELT.png)
-- Melakukan pengambilan data, include orchestration, transformation. i.e., ELT 
-- Melakukan pengambilan data agregasi dari db + excel  
-- Membuat visualisasi
+- Perform data retrieval, include orchestration, transformation. i.e., ELT
+- Retrieving aggregation data from DB + Excel
+- Create visualizations
 
 
 ## 📍 ERD
