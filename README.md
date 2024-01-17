@@ -1,49 +1,27 @@
-# Project Brief Data Engineering
+# Django Apparel
 
-## 💻 Technical Brief
+<!-- ABOUT THE PROJECT -->
+## About The Project
+This project aims to maximize Django Apparel's marketing and sales strategies by utilizing the data that has been collected. The hope is that along with a focused and efficient strategy design, the Django Apparel platform will be able to increase revenue significantly.
 
-## Contraints
+## Build ELT & Data Visualization
+![Github Badge](https://img.shields.io/badge/Github-black?logo=github)
+![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=flat-square)
+[![python](https://img.shields.io/badge/Python-3.9-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![DBeaver](https://img.shields.io/badge/DBeaver-Database%20Tool-blue?logo=dbeaver&style=flat)](https://dbeaver.io/)
+[![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-Workflow%20Automation-orange?logo=apache-airflow&style=flat)](https://airflow.apache.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Relational%20Database-blue?logo=postgresql&style=flat)](https://www.postgresql.org/)
+[![Metabase](https://img.shields.io/badge/Metabase-Business%20Intelligence-brightgreen?logo=metabase&style=flat)](https://www.metabase.com/)
+[![dbt](https://img.shields.io/badge/dbt-Data%20Build%20Tool-blue?logo=dbt&style=flat)](https://www.getdbt.com/)
 
-- Data terpisah berasal dari multiple source seperti db, excel, dan data source yg lain.
-- Constraint setiap problem akan spesifik ditentukan pada bagian project description.
 
-### Requirements
 
+## 🚀 ELT Process
+![ELT](https://github.com/hi-specs/BE-hi-SPEC/assets/73748420/e1769dd4-464b-4d56-9de3-1a65b598b495)
 - Melakukan pengambilan data, include orchestration, transformation. i.e., ELT 
 - Melakukan pengambilan data agregasi dari db + excel  
 - Membuat visualisasi
 
-### Project Description and Expected Delivereble
 
-#### Background
-
-Django Apparel adalah sebuah clothing online store yang sedang berkembang, memiliki tujuan untuk meningkatkan penjualan produk dan memperluas pangsa pasar. Fokus utama perusahaan adalah mengoptimalkan strategi pemasaran koleksi pakaian dengan memanfaatkan data preferensi pelanggan dan tren industri fashion sebagai kunci yang penting.
-
-Melalui platform online, Django Apparel telah mengumpulkan data tentang preferensi pembelian pelanggan, popularitas produk, dan tren industri fashion. Tantangan utama adalah bagaimana memanfaatkan data tersebut secara efektif.
-
-Oleh karena itu, fokus utama Django Apparel saat ini adalah memaksimalkan strategi pemasaran dan penjualan. Dengan memanfaatkan data yang telah terkumpul, perusahaan berharap dapat merancang strategi yang lebih terarah dan efisien. Hal ini meliputi peningkatan penempatan produk, ekspansi ke pasar yang lebih luas untuk meningkatkan revenue, serta memberikan pengalaman belanja yang baik untuk pelanggan setia di platform Django Apparel.
-
-#### Deliverable
-
-1. Create DAG's untuk ingest [data ini](/dataset/) ke postgres menggunakan Airflow
-2. Ekspetasi data yang di ingest terbuat sebanyak 7 table
-3. Transform data untuk membuat kimball data modeling dengan requirements sebagai berikut
-    - Dimension layer
-        - dim_products
-        - dim_customers
-        - dim_locations
-    - Fact layer
-        - fct_transactions
-    - Datamart layer
-        - dm_perfomance_product_by_provinces
-        - dm_revenue_by_months
-
-#### Success Criteria
-
-1. Sukses ingest data dari beberapa format file ke database menggunakan airflow.
-2. Berhasil membuat layering data model dengan joinan table yang tepat.
-3. Berhasil menyajikan isi data dalam data modeling sesuai requirements.
-
-#### Documentation
-
-Link referensi untuk kimball data modelling https://www.youtube.com/watch?v=gRE3E7VUzRU&t=653s
+## 📍 ERD
+![ERD Django Apparel](https://github.com/hi-specs/BE-hi-SPEC/assets/73748420/7cc2e299-7872-4cfd-ac71-f22280c19cee)
