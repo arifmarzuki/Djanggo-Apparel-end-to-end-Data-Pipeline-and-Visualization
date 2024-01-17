@@ -17,11 +17,11 @@ This project aims to maximize Django Apparel's marketing and sales strategies by
 
 
 ## 🚀 ELT Process
-![ELT](https://github.com/hi-specs/BE-hi-SPEC/assets/73748420/e1769dd4-464b-4d56-9de3-1a65b598b495)
+![ELT](https://github.com/qorinamumtaza/assets/blob/main/ELT.png)
 - Melakukan pengambilan data, include orchestration, transformation. i.e., ELT 
 - Melakukan pengambilan data agregasi dari db + excel  
 - Membuat visualisasi
 
 
 ## 📍 ERD
-![ERD Django Apparel](https://github.com/hi-specs/BE-hi-SPEC/assets/73748420/7cc2e299-7872-4cfd-ac71-f22280c19cee)
+![ERD Django Apparel](https://github.com/qorinamumtaza/assets/blob/main/photo1705459710.jpeg)
