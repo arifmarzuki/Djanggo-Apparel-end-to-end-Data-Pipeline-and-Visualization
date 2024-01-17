@@ -1,27 +1,64 @@
-# Django Apparel
 
-<!-- ABOUT THE PROJECT -->
+# Django Apparel's Data Pipelines
+
+
 ## About The Project
 This project aims to maximize Django Apparel's marketing and sales strategies by utilizing the data that has been collected. The hope is that along with a focused and efficient strategy design, the Django Apparel platform will be able to increase revenue significantly.
 
-## Build ELT & Data Visualization
-![Github Badge](https://img.shields.io/badge/Github-black?logo=github)
-![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=flat-square)
-[![python](https://img.shields.io/badge/Python-3.9-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
-[![DBeaver](https://img.shields.io/badge/DBeaver-Database%20Tool-blue?logo=dbeaver&style=flat)](https://dbeaver.io/)
-[![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-Workflow%20Automation-orange?logo=apache-airflow&style=flat)](https://airflow.apache.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Relational%20Database-blue?logo=postgresql&style=flat)](https://www.postgresql.org/)
-[![Metabase](https://img.shields.io/badge/Metabase-Business%20Intelligence-brightgreen?logo=metabase&style=flat)](https://www.metabase.com/)
-[![dbt](https://img.shields.io/badge/dbt-Data%20Build%20Tool-blue?logo=dbt&style=flat)](https://www.getdbt.com/)
 
+## 🖥️ Tools and Tech
 
+<img alt="Python" src="https://img.shields.io/badge/Python-14354C.svg?logo=python&logoColor=white"></a>
+<img alt="Dbeaver" src="https://custom-icon-badges.demolab.com/badge/-Dbeaver-372923?logo=dbeaver-mono&logoColor=white"></a>
+<img alt="PostgreSQL" src ="https://img.shields.io/badge/PostgreSQL-316192.svg?logo=postgresql&logoColor=white"></a>
+<img alt="DBT" src ="https://img.shields.io/badge/dbt-FF694B.svg?logo=dbt&logoColor=white"></a>
+<img alt="Airflow" src ="https://img.shields.io/badge/Airflow-017CEE.svg?logo=Apache-Airflow&logoColor=white">
+<img alt="Github" src ="https://img.shields.io/badge/GitHub-181717.svg?logo=GitHub&logoColor=white">
+<img alt="Docker" src ="https://img.shields.io/badge/Docker-2496ED.svg?logo=Docker&logoColor=white">
+<img alt="Metabase" src ="https://img.shields.io/badge/Metabase-509EE3.svg?logo=Metabase&logoColor=white">
+<img alt ="Discord" src ="https://img.shields.io/badge/Discord-5865F2.svg?logo=Discord&logoColor=white">
 
 ## 🚀 ELT Process
-![ELT](https://github.com/qorinamumtaza/assets/blob/main/ELT.png)
+
+![App Screenshot](/images/outline.png)
 - Perform data retrieval, include orchestration, transformation. i.e., ELT
 - Retrieving aggregation data from DB + Excel
 - Create visualizations
 
+# 📍 ERD
 
-## 📍 ERD
-![ERD Django Apparel](https://github.com/qorinamumtaza/assets/blob/main/photo1705459710.jpeg)
+![App Screenshot](/images/erd.png)
+
+## 🏃 Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/CharisChakim/ELT-demo.git
+```
+
+run docker compose
+
+```bash
+  docker compose up -d
+```
+You can now access airflow at `localhost:8080`
+
+- User: `airflow`
+- Password: `airflow`
+
+You can now access metabase at `localhost:3000`
+
+you can trigger DAG in airflow UI to do ELT task to get data into your database, And then you can visualizing data with metabase.
+
+# 💻 Visualization Sample
+
+![App Screenshot](/images/visual.png)
+
+
+## 🧔 Author
+- Charis Chakim [![Github Badge](https://img.shields.io/badge/Github-black?logo=github)](https://github.com/CharisChakim)
+
+- Arif Marzuki  [![Github Badge](https://img.shields.io/badge/Github-black?logo=github)](https://github.com/arifmarzuki)
+
+- Qorina Mumtaza  [![Github Badge](https://img.shields.io/badge/Github-black?logo=github)](https://github.com/qorinamumtaza)
