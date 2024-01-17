@@ -1,6 +1,6 @@
 .venv
 logs
 base_code
-dags/__pychace__
+dags/__pycache__/
 transformation/target
 

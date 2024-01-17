@@ -1,5 +1,5 @@
-from datetime import datetime
 from airflow import DAG
+from airflow.utils.dates import days_ago
 from airflow.operators.python_operator import PythonOperator
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.operators.dummy_operator import DummyOperator
@@ -12,6 +12,7 @@ def read_data():
 
 def load_data_to_postgres():
     pg_hook = PostgresHook(postgres_conn_id='pg_conn')
+
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS cities (
         city_id INT PRIMARY KEY,
@@ -21,17 +22,20 @@ def load_data_to_postgres():
     '''
     pg_hook.run(create_table_query)
 
-    for _, row in read_data().iterrows():
-        insert_query = "INSERT INTO cities (city_id, city_names, province_id) VALUES (%s, %s, %s)"
-        values = int(row['city_id']),row['city_names'], int(row['province_id'])
-        pg_hook.run(insert_query, autocommit=True, parameters=values)
-        
+    data = read_data()
+
+    # Set PK
+    index_columns = ['city_id']
+
+    # Load Data
+    data.to_sql('cities', con=pg_hook.get_sqlalchemy_engine(), index=False, if_exists='append', method='multi', chunksize=500)
+
     pg_hook.get_conn().commit()
     pg_hook.get_conn().close()
 
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2024, 1, 3)
+    'start_date': days_ago(1)
 }
 
 dag = DAG(
