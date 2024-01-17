@@ -16,7 +16,7 @@ with DAG(
 
     start = DummyOperator(task_id="start")
 
-    local_path = "/c/Users/DELL/Data Engineer/LATIHAN/ELT-demo/transformation" #folder yang ada modelnya
+    local_path = "/d/code-repository/ETL-demo/transformation" #folder yang ada modelnya
     
     dbt_debug = DockerOperator(
         task_id='dbt_debug',
