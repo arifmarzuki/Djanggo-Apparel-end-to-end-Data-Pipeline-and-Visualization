@@ -7,5 +7,5 @@ FROM
     {{ ref('fct_transactions') }}
 GROUP BY
     product_name, product_category_name
-ORDER BY Total_Sales DESC
+ORDER BY Total_qty_Sold DESC
 LIMIT 5
