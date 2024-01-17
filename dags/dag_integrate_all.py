@@ -26,48 +26,48 @@ dag = DAG(
 )
 
 start_operator = DummyOperator(
-    task_id='start',
+    task_id='start_excecution',
     dag=dag,
 )
 
 ingest_product_categories= PythonOperator(
-    task_id='ingest_product_categories',
+    task_id='Extract_and_Load_product_categories',
     python_callable=pc.main,  
     dag=dag,
 )
 
 ingest_products= PythonOperator(
-    task_id='ingest_products',
+    task_id='Extract_and_Load_products',
     python_callable=p.main,  
     dag=dag,
 )
 
 ingest_customers= PythonOperator(
-    task_id='ingest_customers',
+    task_id='Extract_and_Load_customers',
     python_callable=c.main,  
     dag=dag,
 )
 
 ingest_cities= PythonOperator(
-    task_id='ingest_cities',
+    task_id='Extract_and_Load_cities',
     python_callable=ci.main,  
     dag=dag,
 )
 
 ingest_provinces= PythonOperator(
-    task_id='ingest_provinces',
+    task_id='Extract_and_Load_provinces',
     python_callable=prov.main,  
     dag=dag,
 )
 
 ingest_orders= PythonOperator(
-    task_id='ingest_orders',
+    task_id='Extract_and_Load_orders',
     python_callable=o.main,  
     dag=dag,
 )
 
 ingest_order_details= PythonOperator(
-    task_id='ingest_order_details',
+    task_id='Extract_and_Load_order_details',
     python_callable=od.main,  
     dag=dag,
 )
