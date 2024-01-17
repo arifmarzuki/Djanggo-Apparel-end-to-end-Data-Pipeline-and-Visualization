@@ -38,8 +38,7 @@ RUN python -m pip install --upgrade pip setuptools wheel --no-cache-dir
 # Set docker basics
 WORKDIR /usr/app
 
-##
+
 # dbt-postgres
-##
 FROM base as dbt-postgres
 RUN python -m pip install dbt-postgres
