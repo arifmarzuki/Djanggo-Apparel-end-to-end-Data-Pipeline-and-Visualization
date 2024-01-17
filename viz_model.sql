@@ -1,95 +1,70 @@
--- Data penjualan berdasarkan produk
+-- Best seller produk
 SELECT
-    product_id,
     product_name,
     product_category_name,
-    SUM(qty) AS Total_qty_Sold,
-    SUM(unit_sales) AS Total_Sales
+    size,
+    SUM(qty) AS Total_qty_Sold
 FROM
-    dbt_fact.fct_transactions
+    {{ ref('fct_transactions') }}
 GROUP BY
-    product_id, product_name, product_category_name
+    product_name, product_category_name
 ORDER BY Total_Sales DESC
 LIMIT 5;
 
 -- Data penjualan berdasarkan provinsi
 SELECT
-    province_id,
     province_names,
-    SUM(qty) AS Total_qty_Sold,
-    SUM(unit_sales) AS Total_Sales
+    product_name,
+    SUM(qty) AS total_quantity,
+    SUM(unit_sales) AS total_sales
 FROM
-    dbt_fact.fct_transactions
+    {{ ref('fct_transactions') }}
 GROUP BY
-    province_id, province_names
-ORDER BY Total_Sales DESC
-LIMIT 5;
+    province_names,
+    product_name
+ORDER BY
+    province_names
 
 -- Data penjualan berdasarkan waktu (bulan)
 SELECT
-    DATE_TRUNC('month',order_date) AS Month,
+    EXTRACT(MONTH FROM CAST(order_date AS TIMESTAMP)) AS Month,
     SUM(qty) AS Total_qty_Sold,
     SUM(unit_sales) AS Total_Sales
 FROM
-    dbt_fact.fct_transactions
+    {{ ref('fct_transactions')}}
 GROUP BY
     Month
 ORDER BY
-    Month;
+    Month
 
--- Analisis Pelanggan:
--- Total belanja per pelanggan.
--- Jumlah pesanan per pelanggan.
--- Produk paling sering dibeli oleh pelanggan.
+-- Analisis Pelanggan: top 5 pelanggan yang paling banyak menghabiskan uang
 SELECT
-    customer_id,
     name,
-    COUNT(order_id) AS Total_Orders,
     SUM(unit_sales) AS Total_Sales
 FROM
-    dbt_fact.fct_transactions
+    {{ ref('fct_transactions')}}
 GROUP BY
-    customer_id, name
-ORDER BY Total_Sales DESC
-LIMIT 5;
+    name
+ORDER BY 
+    Total_Sales DESC
+LIMIT 5
 
--- Analisis Kategori Produk:
--- Total penjualan per kategori produk.
--- Jumlah produk terjual per kategori.
+-- revenue penjualan tiap bulan dalam setahun
 SELECT
-    product_category_id,
-    product_category_name,
-    SUM(unit_sales) AS Total_Sales,
-    COUNT(DISTINCT product_id) AS Total_Products_Sold
+    EXTRACT(MONTH FROM CAST(order_date AS TIMESTAMP)) AS month,
+    SUM(unit_sales) AS total_revenue
 FROM
-    dbt_fact.fct_transactions
+    {{ ref('fct_transactions') }}
 GROUP BY
-    product_category_id, product_category_name;
-
--- Analisis Waktu:
--- Jumlah pesanan dan penjualan bulanan
-SELECT
-    DATE_TRUNC('month', order_date) AS Month,
-    COUNT(order_id) AS Total_Orders,
-    SUM(unit_sales) AS Total_Sales
-FROM
-    dbt_fact.fct_transactions
-GROUP BY
-    Month
+    month
 ORDER BY
-    Month DESC;
-
--- Analisis Kinerja Produk:
--- Produk terlaris berdasarkan jumlah terjual.
--- Produk dengan pendapatan tertinggi.
+    month
+    
+-- perbandingan pembelian produk berdasarkan gender
 SELECT
-    product_id,
-    product_name,
-    SUM(od.qty) AS Total_qty_Sold,
-    SUM(od.unit_sales) AS Total_Sales
-FROM
-    fct_transactions
+    gender
+    , SUM(unit_sales) as Total_Sales
+from
+    {{ ref('fct_transactions') }}
 GROUP BY
-    product_id, product_name
-ORDER BY
-    Total_qty_Sold DESC;
+    gender
