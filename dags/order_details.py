@@ -1,6 +1,7 @@
 from airflow.hooks.postgres_hook import PostgresHook
 import pandas as pd
 
+#  Main function that orchestrates the Extract and Load process, so this scripts can be callabe
 def main():
     read_data()
     load_data_to_postgres()
@@ -11,9 +12,10 @@ def read_data():
     return df
 
 def load_data_to_postgres():
-    # Define connection
+    # Get postgres connection from airflow
     pg_hook = PostgresHook(postgres_conn_id='pg_conn')
-
+    
+    # Define SQL script to create table in postgres
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS order_details (
         order_detail_id INT PRIMARY KEY,
@@ -24,6 +26,7 @@ def load_data_to_postgres():
         unit_sales INT
     )
     '''
+    # Execute SQL scripts
     pg_hook.run(create_table_query)
 
     data = read_data()

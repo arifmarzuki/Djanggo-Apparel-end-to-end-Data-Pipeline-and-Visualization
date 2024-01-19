@@ -12,19 +12,20 @@ import provinces as prov
 import orders as o
 import order_details as od
 
-default_args = {
+# Define default arguments for the DAG
+default_args = { 
     'owner': 'airflow',
     'depends_on_past': False,
     'start_date': days_ago(1),
 }
-
+# Define the DAG
 dag = DAG(
     'ELT_dag',
     default_args=default_args,
     description='ELT DAG to run many task',
     schedule_interval=None,
 )
-
+# Define Task
 start_operator = DummyOperator(
     task_id='start_excecution',
     dag=dag,
@@ -76,5 +77,5 @@ end_operator = DummyOperator(
     task_id='end_execution',
     dag=dag,
 )
-
+# Create Task Dependencies
 start_operator >> ingest_product_categories>> ingest_products >> ingest_customers >> ingest_provinces >> ingest_cities >> ingest_orders >> ingest_order_details >> end_operator
