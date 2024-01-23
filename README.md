@@ -42,14 +42,17 @@ run docker compose
 ```bash
   docker compose up -d
 ```
-You can now access airflow at `localhost:8080`
+You can access airflow at `localhost:8080`
 
 - User: `airflow`
 - Password: `airflow`
 
-You can now access metabase at `localhost:3000`
+After logging in, you can set the PostgreSQL connection in the admin tab and name it as 'pg_conn.' Configure it with settings similar to those in the existing configuration. [https://github.com/CharisChakim/ELT-demo/blob/main/docker-compose.yaml](docker-compose.yaml)
 
-you can trigger DAG in airflow UI to do ELT task to get data into your database, And then you can visualizing data with metabase.
+You can access metabase at `localhost:3000`
+Configure the connection to postgres data warehouse. 
+
+You can trigger DAG in airflow UI to do ELT task to get data into your database, And then you can visualizing data with metabase.
 
 # 💻 Visualization Sample
 
