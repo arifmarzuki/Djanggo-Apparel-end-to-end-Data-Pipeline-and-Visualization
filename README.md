@@ -47,7 +47,7 @@ You can access airflow at `localhost:8080`
 - User: `airflow`
 - Password: `airflow`
 
-After logging in, you can set the PostgreSQL connection in the admin tab and name it as 'pg_conn.' Configure it with settings similar to those in the existing configuration. [https://github.com/CharisChakim/ELT-demo/blob/main/docker-compose.yaml](docker-compose.yaml)
+After logging in, you can set the PostgreSQL connection in the admin tab and name it as 'pg_conn.' Configure it with settings similar to those in the existing configuration. [docker-compose.yaml]([docker-compose.yaml](https://github.com/CharisChakim/ELT-demo/blob/main/docker-compose.yaml))
 
 You can access metabase at `localhost:3000`
 Configure the connection to postgres data warehouse. 
