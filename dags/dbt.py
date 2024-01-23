@@ -5,6 +5,7 @@ from airflow.operators.docker_operator import DockerOperator
 from docker.types import Mount
 
 default_args = {'owner' : 'airflow'} # Define default arguments for the DAG
+
 # Define the DAG
 with DAG(
     dag_id = 'dag_dbt',
@@ -94,5 +95,6 @@ with DAG(
     )
 
     end = DummyOperator(task_id="end")
-
-    start >> dbt_debug >> dbt_run > dbt_test >> end 
+    
+# Set Task Dependencies
+start >> dbt_debug >> dbt_run >> dbt_test >> end 
