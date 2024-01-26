@@ -4,6 +4,34 @@ models:
   - name: fct_transactions
     description: "Information of transaction"
     columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: order_detail_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: city_id
+        tests:
+          - unique
+          - not_null
+      - name: province_id
+        tests:
+          - unique
+          - not_null
+      - name: product_category_id
+        tests:
+          - unique
+          - not_null
       - name: qty
         description: "Quantity of the product"
         tests:
