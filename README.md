@@ -20,7 +20,7 @@ This project aims to maximize Django Apparel's marketing and sales strategies by
 
 ## 🚀 ELT Process
 
-![App Screenshot](/images/outline.png)
+![Alt text](images/architecture.png)
 - Perform data retrieval, include orchestration, transformation. i.e., ELT
 - Retrieving aggregation data from DB + Excel
 - Create visualizations
@@ -49,14 +49,14 @@ You can access airflow at `localhost:8080`
 
 After logging in, you can set the PostgreSQL connection in the admin tab and name it as 'pg_conn.' Configure it with settings similar to those in the existing configuration in [docker-compose.yaml](https://github.com/CharisChakim/ELT-demo/blob/main/docker-compose.yaml)
 
-You can access metabase at `localhost:3000`
-Configure the connection to postgres data warehouse. 
+You can run/trigger the DAG task after configure it well.
 
-You can trigger DAG in airflow UI to do ELT task to get data into your database, And then you can visualizing data with metabase.
+Next, you can access Metabase at localhost:3000. Configure the connection to the PostgreSQL data warehouse.
+Unleash your imagination and creativity to visualize data using Metabase.
 
 # 💻 Visualization Sample
 
-![App Screenshot](/images/visual.png)
+![Alt text](images/dashboard.png)
 
 
 ## 🧔 Author
